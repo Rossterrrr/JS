@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded',() => {
         e.preventDefault();
         let newFilm = addInput.value;
         const favorite = checkbox.checked;
+        if(checkbox.checked){
+            console.log('Добавляем в избранное');
+        }
         if(newFilm){
             if(newFilm.length > 21){
                 newFilm = `${newFilm.substring(0,22)}...`;
