@@ -1,0 +1,13 @@
+.container{
+	width:1170px;
+	margin:0 auto; 
+}
+.header{
+	background:url(img/header-bg.jpg);
+}
+header a{
+	color:black;
+}
+h1{
+	color:blue;
+}

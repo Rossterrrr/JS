@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;1,100&display=swap');
+body{
+	margin:0;
+	padding:0;
+	font-family: 'Anton', sans-serif;
+	color:white;
+	font-size:16px;
+	min-width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-size:30px;
+	letter-spacing:0.1em;
+	margin:0;
+	padding:0;
+	text-transform:uppercase;
+}
+h2{
+	margin-top:-9px;
+	margin-bottom:30px;
+	font-size:100px;
+	letter-spacing: 0;
+}
+.order_href{
+	text-transform:uppercase;
+	margin-top:30px;
+	font-size:19px;
+	letter-spacing:0.15em;
+	border-width:1px;
+	border-style:solid;
+	border-color:white;
+	padding:18px 25px;
+	width:200px;
+	text-align: center;
+
+}
+ul li{
+	display:block;
+	padding:0;
+	margin:0;
+}
+header a{
+	color:white;
+	text-decoration: none;
+}
+.container{
+	width:1170px;
+	margin:0 auto;
+	min-width: 100%;
+}
+.container_1{
+	width:1170px;
+	margin:0 auto;
+	height:720px;
+	min-width: 100%;
+}
+.logo_img{
+	margin-right: 70px;
+	width:20px;
+}
+.header{
+	background:url('../img/bg.jpg') no-repeat center top/cover;
+}
+.menu{
+	display:flex;
+}
+.menu li a{
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+.menu li{
+	margin-right: 40px;
+}
+.tel{
+	letter-spacing: 0.1em;
+	margin-left:auto;
+	font-size:17px;
+	text-decoration: none;
+}
+.nav{
+	padding-top:57px;
+	align-items:center;
+	display:flex;
+}
+.poster{
+	margin-top:250px;
+}
+h4,h5,h6{
+	color:black;
+}
+h4{
+	margin-top:100px;
+	font-size:50px;
+}
+p{
+	font-size:16px;
+	margin-top:19px;
+	color:black;
+}
+h5,h6{
+	font-size:25px;
+}
+.text_1{
+	font-weight:normal;
+	margin-top:58px;
+	padding-right:30px;
+	width:500px;
+	float:left;
+}
+.text_2{
+	font-weight:normal;
+	float: left;
+	margin-top:58px;
+	width:500px;
+}
+img{
+	margin-top:50px;
+	padding:5px;
+}
+.container_3{
+	min-width: 100%;
+	width:1170px;
+	margin:0 auto;
+	color:black;
+	font-size:15px;
+	margin-top:100px;
+	margin-bottom:80px
+}
+span{
+	margin-right:56px
+}
+.order{
+	font-size:50px;
+	margin-top:50px;
+	color:black;
+}
+.input_info{
+	font-family: 'Work Sans', sans-serif;
+	color:#919191;
+	font-size:25px;
+	width:350px;
+	height:50px;
+	border-color:#919191;
+	border-radius:8px;
+	text-align: center;
+}
+.input_info:hover{
+	border-color:blue;
+}
+.gender_type{
+	margin-top:20px;
+	font-family: 'Work Sans', sans-serif;
+	font-size:25px;
+}
+#male,#female{
+	margin-right:20px;
+}
+.submit_info{
+	color:white;
+	font-family: 'Work Sans', sans-serif;
+	font-size:25px;
+	border-radius:6px;
+	background-color:#68aba9;
+	width:350px;
+	height:50px;
+
+}
+.text_3{
+	float:left;
+}
+

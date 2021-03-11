@@ -74,8 +74,7 @@ document.addEventListener('DOMContentLoaded',() => {
     // MODAL WINDOW PRACTICE
 
     const modalTrigger = document.querySelectorAll('[data-modal]'),
-          modal = document.querySelector('.modal'),
-          closeBtn = document.querySelector('[data-close]');
+          modal = document.querySelector('.modal');
 
     function showModal() {
         modal.classList.remove('hide');
@@ -102,9 +101,8 @@ document.addEventListener('DOMContentLoaded',() => {
         item.addEventListener('click',showModal);
     });
     
-    closeBtn.addEventListener('click',hideModal);
     modal.addEventListener('click',(e) => {
-        if(e.target && e.target === modal){
+        if((e.target && e.target === modal) || e.target.getAttribute('data-close') == ''){
             hideModal();
         }
     });
@@ -202,7 +200,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const forms = document.querySelectorAll('form');
 
     const message = {
-        loading:'Загрузка',
+        loading:'icons/spinner.svg',
         sucsess:'Спасибо,скоро мы с вами свяжемся',
         failure:'Что то пошло не так...'
     };
@@ -213,37 +211,77 @@ document.addEventListener('DOMContentLoaded',() => {
     function postData(form){
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const statusMessage = document.createElement('div');
-            statusMessage.classList.add('status');
-            statusMessage.textContent = message.loading;
-            form.append(statusMessage);
-            
-            const request = new XMLHttpRequest();
-            request.open('POST','server.php');
-            request.setRequestHeader('Content-type','application/json;charset=utf-8');
+            const statusMessage = document.createElement('img');
+            statusMessage.src = message.loading;
+            statusMessage.style.cssText=`
+                display:block;
+                margin: 0 auto;
+            `;
+            form.insertAjacentElement('afterend',statusMessage);
             const formData = new FormData(form);
-            const prot = {};
-            formData.forEach((value,key) => {
-                prot[key] = value;
+            // console.log(formData);
+            // formData.forEach((value,key) => {
+            //     prot[key] = value;
+            // });
+            fetch('server.php',{
+                method:'POST',
+                body:formData
+                // headers:{
+                //     'Content-type':'application/json'
+                // }
+            })
+            .then(data => data.text())
+            .then(data => {  
+                console.log(data);
+                showThanksModal(message.sucsess);
+                statusMessage.remove();
+            })
+            .catch(() => {
+                showThanksModal(message.failure);
+            })
+            .finally(() => {
+                form.reset();
             });
 
-            request.send(JSON.stringify(prot));
-            request.addEventListener('load',() => {
-                if (request.status === 200){
-                    console.log(request.response);
-                    statusMessage.textContent = message.sucsess;
-                    form.reset();
-                    setTimeout(() => {
-                        statusMessage.remove();
-                    },2000);
-                }else {
-                    statusMessage.textContent = message.failure;
-                }
-            });
 
         });
     }
-    
+
+    function showThanksModal(message){
+        const prevModalDialog = document.querySelector('.modal__dialog');
+
+        prevModalDialog.classList.add('hide');
+        showModal();
+
+        const thanksModal = document.createElement('div');
+        thanksModal.classList.add('modal__dialog');
+        thanksModal.innerHTML = `
+            <div class="modal__content">
+                <div class="modal__close data-close">×</div>
+                <div class="modal__title">${message}</div>
+            </div>
+        `;
+
+        document.querySelector('.modal').append(thanksModal);
+
+        setTimeout(()=>{
+            thanksModal.remove();
+            prevModalDialog.classList.add('show');
+            prevModalDialog.classList.remove('hide');
+            hideModal();
+        },4000);
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/posts',{
+        method:'POST',
+        body:JSON.stringify({name:'ALEX'}),
+        headers:{
+            'Content-type':'application/json'
+        }
+
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
 
 
 });
