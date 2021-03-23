@@ -204,84 +204,44 @@ document.addEventListener('DOMContentLoaded',() => {
         sucsess:'Спасибо,скоро мы с вами свяжемся',
         failure:'Что то пошло не так...'
     };
-    forms.forEach(item => {
-        postData(item);
-    })
-
     function postData(form){
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit',(e) => {
             e.preventDefault();
-            const statusMessage = document.createElement('img');
-            statusMessage.src = message.loading;
-            statusMessage.style.cssText=`
-                display:block;
-                margin: 0 auto;
-            `;
-            form.insertAjacentElement('afterend',statusMessage);
             const formData = new FormData(form);
-            // console.log(formData);
-            // formData.forEach((value,key) => {
-            //     prot[key] = value;
-            // });
-            fetch('server.php',{
-                method:'POST',
-                body:formData
-                // headers:{
-                //     'Content-type':'application/json'
-                // }
-            })
-            .then(data => data.text())
-            .then(data => {  
-                console.log(data);
-                showThanksModal(message.sucsess);
-                statusMessage.remove();
-            })
-            .catch(() => {
-                showThanksModal(message.failure);
-            })
-            .finally(() => {
-                form.reset();
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage);
+            
+            const obj = {};
+            formData.forEach((value,key) => {
+                obj[key] = value;
             });
 
-
+            fetch('server.php',{
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify(obj)
+            })
+            .then(data => data.text())
+            .then(data => {
+                console.log(data);
+                statusMessage.textContent = message.sucsess;
+                statusMessage.remove()
+            }).catch(() => {
+                statusMessage.textContent = message.failure;
+            }).finally(() => {
+                form.reset();
+            })
         });
     }
-
-    function showThanksModal(message){
-        const prevModalDialog = document.querySelector('.modal__dialog');
-
-        prevModalDialog.classList.add('hide');
-        showModal();
-
-        const thanksModal = document.createElement('div');
-        thanksModal.classList.add('modal__dialog');
-        thanksModal.innerHTML = `
-            <div class="modal__content">
-                <div class="modal__close data-close">×</div>
-                <div class="modal__title">${message}</div>
-            </div>
-        `;
-
-        document.querySelector('.modal').append(thanksModal);
-
-        setTimeout(()=>{
-            thanksModal.remove();
-            prevModalDialog.classList.add('show');
-            prevModalDialog.classList.remove('hide');
-            hideModal();
-        },4000);
-    }
-
-    fetch('https://jsonplaceholder.typicode.com/posts',{
-        method:'POST',
-        body:JSON.stringify({name:'ALEX'}),
-        headers:{
-            'Content-type':'application/json'
-        }
-
-    })
-    .then(response => response.json())
-    .then(json => console.log(json))
+    forms.forEach(elem => {
+        postData(elem);
+    });
+   
 
 
 });
