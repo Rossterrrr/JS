@@ -1,0 +1,5 @@
+body{
+  height: 100vh;
+  overflow: hidden;
+  background:linear-gradient(rgb(255, 79, 79),rgb(255, 100, 126));
+}

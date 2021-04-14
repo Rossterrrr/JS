@@ -1,0 +1,7 @@
+.item-list{
+    margin: 25px 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    padding:20px;
+}

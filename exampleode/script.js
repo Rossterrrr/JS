@@ -1,17 +1,7 @@
-// const names = ['ivan','ann','ksenia','voldemart'];
+const n = +prompt('Enter - width');
+const m = +prompt('Enter - long');
+const a = +prompt('Enter size of block');
+const long = Math.ceil(m/a);
+const width = Math.ceil(n/a);
+console.log(`${long*width} Плит`);
 
-// const shortNames = names.filter(function(item){
-//     return item.length < 5;
-// });
-// console.log(shortNames);
-
-// const answers = ['ivan','anna','hello'];
-
-// const result = answers.map((item) => {
-//     return item.toLowerCase();
-// })
-
-const arr = [4,6,1,3,2,6];
-
-const res = arr.reduce((sum,current) => sum + current);
-console.log(res);

@@ -1,0 +1,23 @@
+.add-panel{
+    width: 100%;
+    height: 60px;
+    font-size:20px;
+}
+.add-info{
+    box-sizing: border-box;
+    width: 80%;
+    height: inherit;
+    outline: none; 
+    border: none; 
+    padding: 5px 15px;
+}
+.add-button{
+    box-sizing: border-box;
+    width: 20%;
+    height: inherit;
+    border: none;
+    background-color: white;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
